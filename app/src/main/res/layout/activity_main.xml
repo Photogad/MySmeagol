@@ -23,6 +23,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="casual"
         android:text="TextView"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -34,6 +35,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="casual"
         android:text="TextView"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textAge" />
@@ -45,6 +47,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="casual"
         android:text="TextView"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textHumanYears" />
@@ -56,6 +59,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="casual"
         android:text="TextView"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textAgeGroup" />
