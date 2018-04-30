@@ -1,8 +1,10 @@
 package com.pa.mysmeagol
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import java.time.LocalDate
 import java.util.*
@@ -35,6 +37,11 @@ class MainActivity : AppCompatActivity() {
         displayAges()
 
 
+    }
+
+    fun launchCatchGame (view: View) {
+        val intent = Intent(applicationContext, CatchTheSmeagol::class.java)
+        startActivity(intent)
     }
 
 
