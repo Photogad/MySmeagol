@@ -38,9 +38,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-
-
     fun displayAges() {
 
         //// create the date format:
@@ -59,14 +56,36 @@ class MainActivity : AppCompatActivity() {
         textAge.text = catName + " " + "is" + " " + msgCatAge + " " + "old today."
 
 
-
         //// convert millis from the date difference into months
         var realmonths = msDiff / 86400000 / 31
 
 
         //// days until birthday
-        textBirthday.text = sex + " " + "birthday is in" + " " + daysUntilBirthday + " " + "days!"
+        var dt: Date? = null
 
+        dt = sdf.parse(dateofbirth)
+        val BDay = Calendar.getInstance()
+        BDay.time = dt
+        val today = Calendar.getInstance()
+        //// Take your DOB Month and compare it to current month
+        val BMonth = BDay.get(Calendar.MONTH)
+        val CMonth = today.get(Calendar.MONTH)
+        BDay.set(Calendar.YEAR, today.get(Calendar.YEAR))
+        if (BMonth <= CMonth) {
+            BDay.set(Calendar.YEAR, today.get(Calendar.YEAR) + 1)
+        }
+        //// Result in millis
+        val millis = BDay.timeInMillis - today.timeInMillis
+        //// Convert to days
+        val days = millis / 86400000 + 1
+        val sdf2 = SimpleDateFormat("EEEE")
+
+
+
+
+
+
+        textBirthday.text = sex + " " + "birthday is in" + " " + days + " " + "days!"
 
 
         //// start the if else for text output
@@ -196,160 +215,18 @@ class MainActivity : AppCompatActivity() {
 
             //// todo: add more ages
 
+        }
     }
+}
 
 
 
 
 
- /*   fun displayHumanAge() {
-
-        //// getting months different between two dates. This is the amount of months between the birth date and the current date.
-        val startCalendar = GregorianCalendar()
-        startCalendar.setTime(birthDate)
-        val endCalendar = GregorianCalendar()
-        endCalendar.getTime()
-        val diffYear = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR)
-        val diffMonth = diffYear * 12 + 1 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH)
-
-        //println(diffMonth)
 
 
 
-        if (diffMonth < 1) {
-            textHumanYears.text = "That is less than 1 year old in human years."
-            textAgeGroup.text = catName + " " + "is an infant."
-        } else if (diffMonth == 1) {
-            textHumanYears.text = "That is less than 1 year old in human years."
-            textAgeGroup.text = catName + " " + "is an infant."
-        } else if (diffMonth == 2) {
 
-            textHumanYears.text = "That is 3 years old in human years."
-            textAgeGroup.text = catName + " " + "is a toddler."
-        } else if (diffMonth == 3) {
-
-            textHumanYears.text = "That is 4.5 years old in human years."
-            textAgeGroup.text = catName + " " + "is starting kindergarten soon."
-        } else if (diffMonth == 4) {
-
-            textHumanYears.text = "That is 6 years old in human years."
-            textAgeGroup.text = catName + " " + "has been in school for a little bit."
-        } else if (diffMonth == 5) {
-
-            textHumanYears.text = "That is 7.5 years old in human years."
-            textAgeGroup.text = catName + " " + "is still growing."
-        } else if (diffMonth == 6) {
-
-            textHumanYears.text = "That is 9 years old in human years."
-            textAgeGroup.text = catName + " " + "is still growing."
-        } else if (diffMonth == 7) {
-
-            textHumanYears.text = "That is 10 years old in human years."
-            textAgeGroup.text = catName + " " + "is going to be a pre-teen soon."
-        } else if (diffMonth == 8) {
-
-            textHumanYears.text = "That is 11 years old in human years."
-            textAgeGroup.text = catName + " " + "is a pre-teen."
-        } else if (diffMonth == 9) {
-
-            textHumanYears.text = "That is 12 years old in human years."
-            textAgeGroup.text = catName + " " + "is a pre-teen."
-        } else if (diffMonth == 10) {
-
-            textHumanYears.text = "That is 13 years old in human years."
-            textAgeGroup.text = catName + " " + "is officially a teenager."
-        } else if (diffMonth == 11) {
-
-            textHumanYears.text = "That is 14 years old in human years."
-            textAgeGroup.text = catName + " " + "is a teenager."
-        } else if (diffMonth == 12) {
-            //// 1 years old
-
-            textHumanYears.text = "That is 15 years old in human years."
-            textAgeGroup.text = catName + " " + "is a teenager."
-        } else if (diffMonth in 13..18) {
-            //// 1.5 years old
-
-            textHumanYears.text = "That is about 20 years old in human years."
-            textAgeGroup.text = catName + " " + "is officially an adult."
-        } else if (diffMonth in 19..24) {
-
-            textHumanYears.text = "That is about 24 years old in human years."
-            textAgeGroup.text = catName + " " + "is an adult."
-        } else if (diffMonth in 25..36) {
-            //// 3 years old
-
-            textHumanYears.text = "That is about 28 years old in human years."
-            textAgeGroup.text = catName + " " + "is an adult."
-        } else if (diffMonth in 37..48) {
-
-            textHumanYears.text = "That is about 32 years old in human years."
-            textAgeGroup.text = catName + " " + "is an adult."
-        } else if (diffMonth in 49..60) {
-            //// 5 years old
-
-            textHumanYears.text = "That is about 36 years old in human years."
-            textAgeGroup.text = catName + " " + "is an adult."
-        } else if (diffMonth in 61..72) {
-
-            textHumanYears.text = "That is about 40 years old in human years."
-            textAgeGroup.text = catName + " " + "is an adult."
-        } else if (diffMonth in 73..84) {
-            //// 7 years old
-
-            textHumanYears.text = "That is about 44 years old in human years."
-            textAgeGroup.text = catName + " " + "is a mature adult."
-        } else if (diffMonth in 85..96) {
-
-            textHumanYears.text = "That is about 48 years old in human years."
-            textAgeGroup.text = catName + " " + "is a mature adult."
-        } else if (diffMonth in 97..108) {
-            //// 9 years old
-
-            textHumanYears.text = "That is about 52 years old in human years."
-            textAgeGroup.text = catName + " " + "is a mature adult."
-        } else if (diffMonth in 109..120) {
-            //// 10 years old
-
-            textHumanYears.text = "That is about 56 years old in human years."
-            textAgeGroup.text = catName + " " + "is a mature adult and will soon be a senior citizen."
-        } else if (diffMonth in 121..132) {
-            //// 11 years old
-
-            textHumanYears.text = "That is about 60 years old in human years."
-            textAgeGroup.text = catName + " " + "is a a senior citizen."
-        } else if (diffMonth in 133..144) {
-            //// 12 years old
-
-            textHumanYears.text = "That is about 64 years old in human years."
-            textAgeGroup.text = catName + " " + "is a a senior citizen."
-        } else if (diffMonth in 145..156) {
-            //// 13 years old
-
-            textHumanYears.text = "That is about 68 years old in human years."
-            textAgeGroup.text = catName + " " + "is a a senior citizen."
-        } else if (diffMonth in 157..168) {
-            //// 14 years old
-
-            textHumanYears.text = "That is about 72 years old in human years."
-            textAgeGroup.text = catName + " " + "is a a senior citizen."
-        } else if (diffMonth in 169..180) {
-            //// 15 years old
-
-            textHumanYears.text = "That is about 76 years old in human years."
-            textAgeGroup.text = catName + " " + "is a geriatric senior citizen."
-
-
-                //// todo: add more ages
-
-        }*/
-
-
-
-    }
-
-
-    }
 
 
 
